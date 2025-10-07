@@ -1,0 +1,31 @@
+{
+  "name": "solitario-v3",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently --kill-others \"bun build:js -- --watch\" \"bun build:css -- --watch\" \"bunx onchange ./src/index.html -- bun build:html\" \"bun start-server\"",
+    "build:js": "bun tsc",
+    "build:css": "bunx @tailwindcss/cli -i ./src/style.css -o ./dist/style.css -m",
+    "build:html": "bunx html-minifier-terser --collapse-whitespace --remove-comments --input-dir ./src/ --output-dir ./dist/ --file-ext html",
+    "start-server": "bunx lite-server --baseDir=dist",
+    "build:all": "bun build:js && bun build:css && bun build:html",
+    "start": "bun build:all && bun start-server"
+  },
+  "private": true,
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.4",
+    "@tailwindcss/cli": "^4.1.13",
+    "@types/bun": "latest",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.1",
+    "html-minifier-terser": "^7.2.0",
+    "onchange": "^7.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1",
+    "tailwindcss": "^4.1.11",
+    "watch": "^1.0.2"
+  }
+}
