@@ -1,0 +1,847 @@
+@import 'tailwindcss';
+
+
+
+@font-face {
+  font-family: 'playing-card';
+  src: url('/fonts/playing-card.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+button {
+  @apply outline-transparent
+}
+
+@theme {
+  --font-playing-card: 'playing-card', system-ui, -apple-system, 'sans-serif';
+  --color-red-deck: color-mix(in oklab, var(--color-red-400) /* oklch(70.4% 0.191 22.216) */ 90%, transparent);
+  --color-black-deck: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 70%, transparent);
+  --color-card-front-face: oklch(13% 0.028 261.692);
+  --color-card-back-face: #000000;
+  --color-card-border: color-mix(in oklab, var(--color-gray-700) /* oklch(37.3% 0.034 259.733) = #364153 */ 60%, transparent);
+}
+
+
+
+body {
+  --sb-track-color: var(--color-blue-950);
+  --sb-thumb-color: var(--color-blue-800);
+  --sb-size: 10px;
+
+  
+  scrollbar-gutter: stable;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 4px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+      scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
+
+#reset-stack {
+  @apply absolute top-(--y) left-(--x) w-(--card-width) h-(--card-height) bg-[#384355] border border-gray-500/40 rounded flex items-center justify-center [&_svg]:size-10/12 text-gray-400/80 hover:text-gray-400 hover:bg-gray-600/80 cursor-pointer opacity-100 transition-all transition-discrete duration-200;
+
+
+  @starting-style {
+    @apply opacity-0;
+  }
+
+}
+
+#reset-stack.hidden {
+  @apply hidden opacity-0; 
+}
+
+#cards-stack {
+  @apply w-[calc(var(--card-width)_*_2)] h-(--card-height);
+}
+
+
+#cards-foundations {
+  @apply flex gap-2;
+}
+
+#cards-foundations .foundation {
+  @apply w-(--foundation-width) h-(--foundation-height) rounded border border-gray-600/60 [&_*]:pointer-events-none;
+}
+
+#cards-foundations .foundation .foundation-icon {
+  @apply flex items-center justify-center w-full h-full;
+}
+
+
+#cards-foundations .foundation .foundation-icon svg {
+  @apply size-6/12 text-gray-700 drop-shadow-[0_0_10px_#384355];
+}
+
+
+#cards-foundations .foundation:is(.diamonds-foundation, .hearts-foundation) {
+  @apply [&_svg]:text-red-400/60;
+}
+
+#cards-foundations .foundation:is(.clubs-foundation, .spades-foundation) {
+  @apply [&_svg]:text-black/40;
+}
+
+.card-container {
+  @apply w-(--card-width) h-(--card-height) rounded absolute perspective-distant left-(--x) top-(--y) font-playing-card z-(--index) [&_*]:select-none select-none cursor-pointer;
+} 
+
+.card-container.moving-card {
+  @apply transition-[top,_left,transform] transition-discrete duration-(--moving-card-duration) pointer-events-none z-[calc(var(--index)_+_10000)];
+}
+
+.card-container[data-flipped="true"] .card { 
+  @apply rotate-y-180;
+}
+
+.card-container[data-flipped="true"] { 
+  @apply cursor-grab;
+}
+
+.card-container[data-flipped="false"] { 
+  @apply cursor-not-allowed;
+}
+
+.card-container[data-zone="stacked"] {
+  @apply cursor-pointer;
+}
+
+.card-container[data-zone="showed"] { 
+  @apply z-[calc(var(--index)_+_1000)];
+}
+
+.card-container[data-zone="zone"]:not(.card-setting-up) { 
+  @apply top-[calc(var(--y)_+_calc(var(--card-indicator-height)_*_calc(var(--index)_-_1)))];
+}
+
+.card-container.dragging-card {
+  @apply z-[calc(var(--index)_+_10000)] cursor-grabbing;
+}
+
+.card-container.selected-card{
+  @apply outline outline-blue-800;
+}
+
+.card-container .card {
+  @apply size-full rounded text-white transform-3d transition-transform duration-700 relative rotate-y-360 border border-card-border bg-black [&_*]:pointer-events-none pointer-events-none;
+}
+.card-container .card .card-face {
+  @apply flex items-center justify-center size-full backface-hidden absolute inset-0;
+}
+
+.card-container .card .card-front-face {
+  @apply rotate-y-180 z-50 flex flex-col justify-between px-1 text-white bg-card-front-face;
+}
+
+
+.card-container .card .card-back-face {
+  @apply [&_svg]:size-6/12 text-white/70 bg-card-back-face;
+}
+
+
+.card-container .card .card-back-face {
+  @apply flex flex-col p-1.5;
+}
+
+.card-container .card .card-back-face .back-face-card-indicator {
+  @apply w-full text-white/60;
+}
+
+.card-container .card .card-back-face .back-face-card-indicator.back-face-card-indicator-top {
+  @apply h-[15%] [&_svg]:h-full [&_svg]:w-[calc(var(--card-width)_*_0.18)];
+}
+
+.card-container .card .card-back-face .back-face-card-indicator.back-face-card-indicator-bottom {
+  @apply h-[85%] flex justify-center items-center w-full [&_svg]:size-[calc(var(--card-width)_*_0.5)];
+}
+
+.card-container .card .card-front-face .front-face-card-indicator {
+  @apply w-full [&_svg]:size-(--indicator-edge-svg-size) flex items-center text-[6px] md:text-base  p-0.5 text-gray-400 h-fit select-none bg-gray-950;
+}
+
+.card-container .card .card-front-face .front-face-card-indicator.front-face-card-indicator-top {
+  @apply p-0.5;
+}
+
+.card-container .card .card-front-face .front-face-card-indicator.front-face-card-indicator-middle {
+  @apply justify-center [&_svg]:size-(--indicator-middle-svg-size);
+}
+
+.card-container .card .card-front-face .front-face-card-indicator.front-face-card-indicator-bottom {
+  @apply justify-end;
+}
+
+.card-container .card .card-front-face .front-face-card-indicator.red {
+  @apply text-red-deck;
+}
+.card-container .card .card-front-face .front-face-card-indicator.black {
+  @apply text-black-deck;
+}
+
+
+.zones {
+  @apply flex flex-row gap-2 md:gap-5 w-fit mx-auto mt-5;
+}
+
+.zones .zone {
+  @apply w-(--zone-width) h-(--zone-height) min-h-(--zone-height) rounded border border-gray-600/60 transition-[height] transition-discrete duration-200 [interpolate-size:_allow-keywords] relative;
+}
+
+.zones .zone .empty-zone {
+  @apply w-(--card-width) h-(--card-height) absolute top-1/2 left-1/2 -translate-1/2 hidden content-end text-end font-playing-card text-gray-400/70 text-[8px] md:text-sm px-1 pointer-events-none select-none opacity-0 transition-opacity transition-discrete duration-200;
+}
+
+.zones .zone.empty-zone {
+  @apply border-dashed;
+}
+
+.zones .zone.empty-zone .empty-zone {
+  @apply block opacity-100;
+  
+  @starting-style {
+    @apply opacity-0;
+  }
+}
+
+
+html, body {
+  overscroll-behavior-y: contain;
+  touch-action: pan-x pan-down;
+}
+
+.divided-card {
+  @apply grid grid-cols-[repeat(2,calc(var(--card-width)/2))] grid-rows-[repeat(2,calc(var(--card-height)/2))] [&_*]:pointer-events-none [&_*]:select-none size-fit gap-1 absolute;
+}
+
+.divided-card .card-part {
+  @apply w-[calc(var(--card-width)/2)] h-[calc(var(--card-height)/2)] bg-gray-950 relative overflow-hidden origin-top-left flex;
+}
+
+
+.card-part .main-icon {
+  @apply size-(--indicator-middle-svg-size) absolute text-current;
+} 
+
+.card-part.card-part-top-left .main-icon {
+  @apply bottom-0 right-0 translate-1/2;
+}
+
+.card-part.card-part-top-right .main-icon {
+  @apply left-0 bottom-0 -translate-x-1/2 translate-y-1/2;
+}
+
+.card-part.card-part-bottom-left .main-icon {
+  @apply top-0 right-0 translate-x-1/2 -translate-y-1/2;
+}
+
+.card-part.card-part-bottom-right .main-icon {
+  @apply top-0 left-0 -translate-1/2;
+}
+.card-part .card-indicator {
+  @apply w-full;
+}
+
+.card-part.card-part-bottom-right .card-indicator {
+  @apply self-end justify-end;
+}
+
+.card-part .card-indicator {
+  @apply flex items-center gap-px text-[6px] md:text-base [&_svg]:size-(--indicator-edge-svg-size) font-playing-card px-1 py-0.5;
+}
+
+.card-part.card-part-top-left .card-indicator  {
+  @apply self-start;
+}
+
+.divided-card.red {
+  @apply text-red-deck;
+}
+
+.divided-card.black {
+  @apply text-black-deck;
+}
+
+
+.divided-card .card-part {
+  @apply border-gray-700/60;
+}
+
+.divided-card .card-part {
+  &.card-part-top-right {
+    @apply border-t border-r;
+  }
+
+  &.card-part-bottom-left {
+    @apply border-b border-l;
+  }
+
+  &.card-part-bottom-right {
+    @apply border-b border-r;
+  }
+
+  &.card-part-top-left {
+    @apply border-t border-l;
+  }
+}
+
+.divided-card.animate {
+  .card-part.card-part-top-left {
+      animation: part-top-left var(--ending-animated-card-duration) ease-in-out forwards;
+      clip-path: polygon(0 0, 100% 0, 94% 5%, 100% 11%, 90% 13%, 100% 20%, 94% 26%, 99% 26%, 97% 30%, 100% 35%, 94% 38%, 100% 45%, 97% 48%, 99% 52%, 95% 55%, 100% 61%, 95% 65%, 100% 68%, 93% 77%, 99% 78%, 94% 84%, 100% 87%, 95% 93%, 100% 100%, 91% 97%, 85% 100%, 79% 97%, 71% 100%, 65% 96%, 61% 100%, 55% 97%, 50% 100%, 43% 96%, 39% 99%, 33% 95%, 31% 99%, 23% 96%, 21% 100%, 14% 97%, 8% 100%, 3% 96%, 0 100%);
+  }
+
+
+  .card-part.card-part-top-right {
+      animation: part-top-right var(--ending-animated-card-duration) ease-in-out forwards;
+      clip-path: polygon(100% 0%, 10% 0%, 4% 5%, 10% 11%, 0% 13%, 10% 20%, 4% 26%, 0% 26%, 7% 30%, 10% 35%, 4% 38%, 10% 45%, 7% 48%, 9% 52%, 5% 55%, 10% 61%, 5% 65%, 5% 68%, 3% 77%, 6% 78%, 3% 84%, 10% 87%, 5% 93%, 10% 100%, 13% 97%, 16% 100%, 21% 97%, 29% 100%, 35% 96%, 39% 100%, 45% 97%, 50% 100%, 57% 96%, 61% 99%, 67% 95%, 69% 99%, 77% 96%, 79% 100%, 86% 97%, 92% 100%, 97% 96%, 100% 100%)
+  }
+
+  .card-part.card-part-bottom-left {
+    animation: part-bottom-left var(--ending-animated-card-duration) ease-in-out forwards;
+    clip-path: polygon(0% 100%, 90% 100%, 97% 95%, 90% 89%, 100% 87%, 90% 80%, 96% 74%, 91% 74%, 93% 70%, 90% 65%, 96% 62%, 90% 55%, 93% 52%, 91% 48%, 95% 45%, 90% 39%, 95% 35%, 90% 32%, 97% 23%, 91% 22%, 96% 16%, 90% 13%, 95% 7%, 100% 5%, 91% 2%, 85% 5%, 79% 2%, 71% 5%, 65% 1%, 61% 5%, 55% 2%, 50% 5%, 43% 1%, 39% 4%, 33% 0%, 31% 4%, 23% 1%, 21% 5%, 14% 2%, 8% 5%, 3% 1%, 0% 5%);
+  }
+
+  .card-part.card-part-bottom-right {
+    animation: part-bottom-right var(--ending-animated-card-duration) ease-in-out forwards;
+    clip-path: polygon(100% 100%,  0% 100%,  6% 95%,  0% 89%,  10% 87%,  0% 80%,  6% 74%,  1% 74%,  3% 70%,  0% 65%,  6% 62%,  0% 55%,  3% 52%,  1% 48%,  5% 45%,  0% 39%,  5% 35%,  0% 32%,  7% 23%,  1% 22%,  6% 16%,  0% 13%,  5% 7%,  0% 5%,  9% 2%,  15% 5%,  21% 2%,  29% 5%,  35% 1%,  39% 5%,  45% 2%,  50% 5%,  57% 1%,  61% 4%,  67% 0%,  69% 4%,  77% 1%,  79% 5%,  86% 2%,  92% 5%,  97% 1%,  100% 5%);
+  }
+
+}
+
+@keyframes part-top-left {
+  0% {
+      transform: translate(4px, 0) rotate(0deg);
+      opacity: 1;
+  }
+
+  20% {
+      /* Move slightly out from the main element */
+      transform: translate(10px, -10px) rotate(5deg);
+      opacity: 1;
+  }
+
+  100% {
+      /* Fall down and rotate, then fade out */
+      transform: translate(50px, 400px) rotate(360deg);
+      opacity: 0;
+      display: none;
+  }
+}
+
+@keyframes part-top-right {
+  0% {
+      transform: translate(-4px, 0) rotate(0deg);
+      opacity: 1;
+  }
+
+  20% {
+      /* Move slightly out from the main element */
+      transform: translate(10px, 10px) rotate(-5deg);
+      opacity: 1;
+  }
+
+  100% {
+      /* Fall down and rotate, then fade out */
+      transform: translate(70px, 400px) rotate(90deg);
+      opacity: 0;
+      display: none;
+  }
+}
+
+
+
+@keyframes part-bottom-left {
+  0% {
+      transform: translate(4px, -7px) rotate(0deg);
+      opacity: 1;
+  }
+
+  20% {
+      /* Move slightly out from the main element */
+      transform: translate(-10px, -10px) rotate(-5deg);
+      opacity: 1;
+  }
+
+  100% {
+      /* Fall down and rotate, then fade out */
+      transform: translate(50px, 420px) rotate(-180deg);
+      opacity: 0;
+      display: none;
+  }
+}
+
+
+
+@keyframes part-bottom-right {
+  0% {
+      transform: translate(-4px, -7px) rotate(0deg);
+      opacity: 1;
+  }
+
+  20% {
+      /* Move slightly out from the main element */
+      transform: translate(0px, -30px) rotate(-5deg);
+      opacity: 1;
+  }
+
+  100% {
+      /* Fall down and rotate, then fade out */
+      transform: translate(50px, 420px) rotate(-50deg);
+      opacity: 0;
+      display: none;
+  }
+}
+
+.counters-container {
+  @apply fixed md:top-0 md:left-1/2 md:-translate-x-1/2 flex md:flex-row items-center md:gap-0 z-999999 transition-all transition-discrete md:translate-y-0 duration-900 overflow-hidden top-1/2 right-0 flex-col size-fit;
+
+  @starting-style {
+    @apply md:-translate-y-full md:-translate-x-1/2 translate-x-full;
+  }
+}
+
+.counters-container.hidden {
+  @apply md:-translate-y-full md:-translate-x-1/2 translate-x-full;
+}
+
+.counter-card {
+  @apply size-full w-fit bg-gray-900 py-1.5 px-3 md:rounded-bl md:rounded-br border md:border-t-0 border-gray-600/50 z-999999 flex items-center rounded-tl rounded-bl border-r-0;
+}
+
+.counter-card.hidden {
+  @apply w-0 p-0 m-0 border-0 overflow-hidden;
+}
+
+.time-container {
+  @apply flex items-center;
+}
+
+.time-container .time-colon {
+  @apply mx-1;
+}
+
+.time-container .time-card {
+  @apply size-full;
+}
+
+.time-container *:not(:last-child) {
+  @apply transition-all duration-100 opacity-100 block;
+
+
+  @starting-style {
+    @apply opacity-0;
+  }
+}
+
+.time-container .time-card {
+  @apply w-fit;
+}
+
+.time-container *.hidden {
+  @apply hidden opacity-0;
+}
+
+
+.counter-card .counter-icon {
+  @apply [&_svg]:size-4 mr-2; 
+}
+
+.action-button {
+  @apply bg-zinc-950 md:px-4 py-2 px-2 rounded-lg flex items-center gap-1 border border-zinc-700/80 cursor-pointer not-disabled:hover:bg-zinc-900 not-disabled:hover:border-zinc-700/60 transition-all disabled:cursor-not-allowed active:scale-95 active:duration-50 text-sm disabled:bg-gray-700/60 disabled:text-gray-400 [&_svg]:md:size-5 [&_svg]:size-6 disabled:border-zinc-700/60 ;
+}
+
+.action-button.hidden {
+  @apply hidden;
+}
+
+.action-button span {
+  @apply hidden md:block;
+}
+
+.action-button:is(.undo-button, .redo-button) {
+  @apply bg-slate-950 border-slate-700/80 hover:bg-slate-900 hover:border-slate-700/60 disabled:bg-gray-700/60;
+}
+
+.action-button.undo-button svg {
+  @apply rotate-y-180;
+}
+
+
+.action-button.new-game-button {
+  @apply bg-slate-950 border-slate-700/80 hover:bg-slate-900 hover:border-slate-900/60 disabled:bg-gray-700/60;
+}
+
+#actions-container {
+  @apply fixed bottom-0 left-0 py-2 md:px-6 px-3 z-999999 items-center gap-3 w-full translate-y-0 flex transition-all duration-300 transition-discrete overflow-auto;
+
+
+  @starting-style {
+    @apply translate-y-full;
+  }
+}
+
+#actions-container.hidden {
+  @apply hidden translate-y-full;
+}
+
+
+dialog::backdrop {
+  @apply flex items-center justify-center transition-discrete transition-[display] duration-75 opacity-0;
+}
+
+dialog[open]::backdrop {
+  @apply block opacity-100;
+
+  @starting-style {
+    @apply opacity-0;
+  }
+}
+
+dialog {
+  @apply outline-none border-none bg-gray-950/70 text-gray-400 py-10 px-10 m-auto rounded backdrop-blur-xs !hidden flex-col gap-4 w-full max-w-11/12  md:max-w-[420px] transition-discrete transition-all opacity-0 duration-400 -translate-y-10 h-fit;
+}
+
+dialog[open] {
+  @apply !flex opacity-100 translate-y-0;
+
+
+  @starting-style {
+    @apply opacity-0 -translate-y-10;
+  }
+}
+
+
+
+#main-options-dialog {
+  @apply flex items-center justify-center;
+}
+
+
+#main-options-dialog header {
+  @apply w-fit flex gap-2 items-center justify-center relative mx-auto;
+}
+
+#main-options-dialog header svg {
+  @apply size-10;
+}
+
+dialog .close-button {
+  @apply [&_svg]:size-6 absolute top-1 right-1 cursor-pointer transition-colors p-px outline hover:outline-gray-600 rounded text-gray-600 hidden;
+}
+
+
+#main-options-dialog[data-status="new-game"] .close-button {
+  @apply block;
+}
+
+#main-options-dialog main {
+  @apply flex flex-col gap-4 items-center w-full mb-2;
+}
+
+#main-options-dialog main .difficulty {
+  @apply flex items-center gap-4 overflow-hidden mb-4 mt-2 mx-auto w-fit;
+}
+
+#main-options-dialog main .difficulty-card {
+  --card-width: 70px;
+  @apply md:w-(--card-width) w-[calc(var(--card-width)_*_0.8)] h-auto aspect-[1/1.4] bg-card-front-face rounded border border-card-border [&_svg]:md:size-6 [&_svg]:size-5 flex flex-col items-center justify-evenly md:text-base text-sm font-playing-card cursor-pointer hover:bg-gray-900 transition-colors outline-none select-none;
+}
+
+.difficulty-easy {
+  @apply [&_svg]:text-blue-800;
+}
+
+.difficulty-hard {
+  @apply [&_svg]:text-orange-800;
+}
+
+
+#main-options-dialog main .difficulty .difficulty-card.difficulty-selected {
+  @apply border-blue-600;
+}
+
+
+#main-options-dialog main .game-suggestions {
+  @apply bg-slate-700 p-4 rounded text-xs flex-col gap-1 w-full hidden;
+}
+#main-options-dialog main .game-suggestions header {
+  @apply w-fit m-0 text-gray-300 flex items-center gap-0.5 [&_svg]:size-4 [&_svg]:text-orange-400; 
+}
+
+
+#main-options-dialog main .game-suggestions ul {
+  @apply text-xs list-disc ml-5;
+} 
+
+#main-options-dialog main .game-suggestions ul li {
+  @apply my-0.5;
+}
+
+
+dialog button.dialog-button {
+  @apply bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-800 transition-all duration-150 cursor-pointer active:scale-95 select-none w-full flex items-center justify-center gap-2 [&_svg]:size-5 h-9;
+}
+
+#main-options-dialog .toggler-container {
+  @apply flex items-center justify-between gap-2 bg-slate-700 rounded px-3 py-3 w-full;
+}
+
+
+#main-options-dialog .toggler-container .toggler-content {
+  @apply flex items-center gap-2;
+}   
+
+#main-options-dialog .toggler-container .toggler-icon {
+  @apply [&_svg]:size-5.5 text-gray-300;
+}
+
+#main-options-dialog .toggler-text {
+  @apply flex flex-col text-sm leading-3;
+}
+
+#main-options-dialog .toggler-text h4 {
+  @apply text-gray-300 text-xs md:text-sm font-semibold md:font-normal;
+}
+
+
+#main-options-dialog .toggler-text p {
+  @apply text-[10px]  md:text-xs;
+} 
+
+#main-options-dialog .toggler-switch {
+  @apply h-full flex items-center justify-center
+}
+
+
+#main-options-dialog .toggler-switch label .switch {
+  @apply relative md:w-11 md:h-6 w-9 h-5 peer-focus:outline-none  rounded-full bg-gray-500 peer-checked:after:md:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:md:w-5 after:md:h-5 after:size-4 after:transition-all border-gray-600 peer-checked:bg-blue-700 peer-checked:after:translate-x-full;
+}
+
+#main-options-dialog .toggler-container[data-active="true"] .toggler-text p:first-of-type, 
+#main-options-dialog .toggler-container[data-active="false"] .toggler-text p:last-of-type {
+  @apply block;
+}
+
+
+#main-options-dialog main .difficulty-descriptions-container {
+  @apply flex flex-row gap-2;
+}
+
+#main-options-dialog main .difficulty-descriptions-container .difficulty-description {
+  @apply hidden gap-3 md:gap-2 items-center [&_svg]:size-10 text-sm;
+}
+
+
+#main-options-dialog main .difficulty-descriptions-container[data-difficulty="easy"] .difficulty-description.difficulty-description--easy,
+#main-options-dialog main .difficulty-descriptions-container[data-difficulty="hard"] .difficulty-description.difficulty-description--hard {
+  @apply flex;
+}
+
+
+#main-options-dialog main .difficulty-descriptions-container .single-difficulty-card {
+  @apply [&_svg]:md:size-5 [&_svg]:size-4 md:text-xs text-[10px] h-14 aspect-[1/1.4] cursor-default;
+}
+
+
+#main-options-dialog main .difficulty-descriptions-container .difficulty-description p {
+  @apply text-xs text-pretty;
+}
+
+
+.difficulty-badge-indicator {
+  @apply flex ml-auto;
+}
+
+.difficulty-badge-indicator .difficulty-badge {
+  @apply hidden items-center gap-1 bg-slate-900 py-1.5 px-3 rounded [&_svg]:size-5 text-sm font-playing-card cursor-pointer leading-[11px];
+}
+
+
+.difficulty-badge-indicator .difficulty-badge span {
+  @apply hidden md:block;
+}
+
+.difficulty-badge-indicator[data-difficulty="easy"] .difficulty-badge.difficulty-easy,
+.difficulty-badge-indicator[data-difficulty="hard"] .difficulty-badge.difficulty-hard {
+  @apply flex;
+}
+
+#remaining-stack-turns {
+  @apply ml-[calc(var(--x)_*_0.5)] bg-slate-700 w-fit h-fit px-2 py-1 rounded flex items-center gap-1 [&_svg]:size-5 text-sm transition-all transition-discrete translate-y-0 opacity-100 select-none;
+
+
+  @starting-style {
+    @apply -translate-y-5 opacity-0
+  }
+}
+
+#remaining-stack-turns.hidden {
+  @apply hidden -translate-y-5 opacity-0;
+}
+
+
+#remaining-stack-turns.empty {
+  @apply bg-gray-700 text-gray-400;
+}
+
+
+#pause-button {
+  @apply [&_svg]:size-6 bg-slate-950 border-slate-700/80 hover:bg-slate-900 hover:border-slate-900/60 px-2 py-1;
+}
+
+#game-paused-dialog {
+  @apply px-10 py-6;
+}
+
+dialog header {
+  @apply w-fit mx-auto flex flex-col gap-0 [&_svg]:size-16 items-center;
+}
+
+dialog header h1 {
+  @apply text-3xl font-playing-card;
+}
+
+dialog main {
+  @apply flex flex-col gap-4;
+}
+
+dialog .game-section {
+  @apply bg-gray-700 space-y-2 text-sm px-3 py-2 rounded [&_svg]:size-5;
+}
+
+dialog .game-section header {
+  @apply flex flex-row items-center gap-1 w-fit m-0 -ml-1 mb-2 md:text-sm text-xs;
+}
+
+dialog .game-section .stats-cards {
+  @apply flex flex-row gap-2 w-full justify-center leading-[16px];
+}
+
+dialog .game-section .stats-cards .stat-card {
+  @apply flex flex-col items-center justify-center w-2/5 py-2;
+}
+
+dialog .game-section .stats-cards .stat-card span {
+  @apply font-semibold font-playing-card md:text-xl md:leading-[16px] text-lg leading-[14px];
+}
+
+
+dialog .game-section .stats-cards .stat-card.movements-stat span {
+  @apply text-blue-500;
+}
+dialog .game-section .stats-cards .stat-card.time-stat span {
+  @apply text-green-500;
+}
+
+dialog .game-section ul li .difficulty-badge-indicator.stats-difficulty-badge-indicator .difficulty-badge {
+  @apply text-[12px] [&_svg]:size-4 items-center [&_span]:mt-px px-1.5;
+}
+
+dialog .game-section ul li .difficulty-badge-indicator.stats-difficulty-badge-indicator .difficulty-badge span {
+  @apply block;
+}
+
+dialog .game-section ul {
+  @apply text-gray-300 space-y-1;
+}
+
+dialog .game-section ul li {
+  @apply flex items-center justify-between md:text-sm text-xs;
+}
+
+dialog .game-section ul li .stat-checkbox {
+  @apply bg-gray-950 text-white rounded [&_svg]:md:size-5 [&_svg]:size-4;
+}
+
+dialog .game-section ul li .stat-checkbox svg {
+  @apply hidden rounded;
+}
+
+dialog .game-section ul li .stat-checkbox[data-active="true"] .check {
+  @apply bg-green-700 block;
+}
+
+dialog .game-section ul li .stat-checkbox[data-active="false"] .cross {
+  @apply bg-red-700 block;
+}
+
+
+#game-progress ul li span {
+  @apply font-playing-card; 
+}
+
+
+#game-paused-dialog .close-button {
+  @apply block;
+}
+
+
+#game-paused-dialog .buttons-container {
+  @apply flex gap-2;
+}
+
+#game-paused-dialog .buttons-container .dialog-button--continue {
+  @apply flex-6;
+}
+
+#game-paused-dialog .buttons-container .dialog-button--restart {
+  @apply flex-1 [&_svg]:size-6 bg-gray-800 hover:bg-gray-700;
+}
+
+#end-game-dialog > header {
+  @apply mb-2
+}
+
+#end-game-dialog > header svg {
+  @apply text-yellow-400;
+}
+
+#end-game-dialog header h2 {
+  @apply text-4xl font-playing-card;
+}
+
+#end-game-dialog header p {
+  @apply text-sm leading-2.5 text-gray-500;
+}
+
+#end-game-dialog footer {
+  @apply text-sm text-center text-pretty text-gray-500;
+}
+
+#omit-button {
+  @apply absolute bottom-2 right-2 flex items-center gap-1 bg-slate-950 border-slate-700/80 hover:bg-slate-900 hover:border-slate-900/60 px-2 py-1 [&_svg]:size-4 rounded cursor-pointer transition-all transition-discrete translate-x-0 opacity-100;
+
+
+  @starting-style {
+    @apply translate-x-5 opacity-0;
+  }
+
+}
+
+#omit-button.hidden {
+  @apply hidden translate-x-5 opacity-0;
+}
+
+#show-card-from-stack {
+  @apply absolute w-(--show-card-from-stack-width) h-(--card-height) top-(--show-card-from-stack-y) left-(--show-card-from-stack-x) z-100 cursor-pointer;
+}

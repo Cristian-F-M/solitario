@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    const newGameboard = {
+    "cards": [
+        {
+            "id": "2eb76989-fd2f-4843-8110-e15c32910626",
+            "number": 4,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "f60007d5-93c2-49a0-88e0-9faa4ee5d653",
+            "number": 11,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "77187646-20f1-427f-9d89-bf74046a1e3f",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "63b80069-c771-4bc4-be28-82a4efbe306d",
+            "number": 5,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "77187646-20f1-427f-9d89-bf74046a1e3f",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "92ee87da-5189-42e2-b6ab-10d950f343af",
+            "number": 12,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "414c671e-ee1d-4501-8486-ba52634f5714",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "ffb2e246-7e8a-48b3-9697-1bb6aaca3648",
+            "number": 12,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "414c671e-ee1d-4501-8486-ba52634f5714",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "043ee4e0-0444-43aa-b47b-327a781835f3",
+            "number": 11,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "414c671e-ee1d-4501-8486-ba52634f5714",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "fc352345-464c-469f-9723-5092f06da7c2",
+            "number": 5,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "bb9853d7-3e03-4e7a-a660-825a85eefeef",
+            "number": 11,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "313c248d-d04e-4d37-ab4f-8e98bb612852",
+            "number": 7,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "6a45347c-0fac-4ab2-b5ea-ca47094458d3",
+            "number": 2,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": true,
+            "zoneId": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "c6eb00b0-0052-4ba5-b55e-0394cefee7da",
+            "number": 9,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "729ff8b4-0af1-4c9e-92b4-5d37e1537fa6",
+            "number": 4,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "1bc70342-0b38-46ff-bf98-020fa7ea4d5b",
+            "number": 10,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "a6225324-be20-4e77-a220-890652834ab1",
+            "number": 6,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "43dc8ef7-5df2-4b4a-ae13-21b2dd592fdd",
+            "number": 5,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": true,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "c3535460-b9df-4438-ad34-8aae1355a735",
+            "number": 1,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "313ab914-5894-410b-91a8-6b43eb9e69de",
+            "number": 8,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "b6637ba5-c908-4b8f-89dc-b148bf23895d",
+            "number": 3,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "10f20807-1c87-4b65-8b90-6568408472f6",
+            "number": 1,
+            "deck": "spades",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "4d8fd0b8-c33a-472a-bfb4-ab80453f4fe0",
+            "stacked": false,
+            "showed": false,
+            "zone": "foundation"
+        },
+        {
+            "id": "600db5f0-3632-46e1-befd-8378d0e40466",
+            "number": 1,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": true,
+            "zoneId": "21bc7622-e7b5-4c40-91ce-2d7a1bb277fc",
+            "stacked": false,
+            "showed": false,
+            "zone": "foundation"
+        },
+        {
+            "id": "bd2f0372-dee5-4d42-b2af-09e4afecbaac",
+            "number": 3,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": true,
+            "zoneId": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "4c336bbb-fbca-4f88-8ac9-0884dcf35fee",
+            "number": 8,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "a87c8167-accd-41b3-ae4a-70b13c19b4a1",
+            "number": 12,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "d3c97f31-b1ef-47d5-b0ba-caed34c2ac77",
+            "number": 7,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "5da73ad9-9783-4713-a538-08ac72c5889e",
+            "number": 13,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "f91402ce-a579-4029-983a-8f25bde264fe",
+            "number": 1,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "ca4ffd50-eb73-4916-ac82-6ce899bbd956",
+            "number": 10,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "23aa4b33-8d20-4847-9c5a-c1f810fee3dc",
+            "number": 6,
+            "deck": "spades",
+            "color": "black",
+            "flipped": true,
+            "zoneId": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "stacked": false,
+            "showed": false,
+            "zone": "zone"
+        },
+        {
+            "id": "01339eef-1aeb-4e7e-b5e4-a6d9926d0c3e",
+            "number": 2,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "b7d6b64c-1a89-416e-b2dd-48720e52c92c",
+            "number": 12,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "3665d90e-c0de-4a9f-bd0f-586f3c11fc74",
+            "number": 2,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "3d7e3713-3558-4889-aaed-fdb37a0f00cc",
+            "number": 7,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "40b04805-06a8-4869-87be-a012305b00ed",
+            "number": 4,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "4cefd3af-99fc-4e98-b051-f5fe3ec4962c",
+            "number": 6,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "7be61743-95b1-4327-8970-83614c8fe5b3",
+            "number": 3,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "0274eb70-6de9-4488-8cef-8ffb148b7fc6",
+            "number": 13,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "db11c43e-2cd1-4800-80c3-39c4c6f0e8cf",
+            "number": 6,
+            "deck": "diamonds",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "103ecab3-405f-4f38-b123-3c618706a252",
+            "number": 9,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "b19459e5-11d5-44a0-ad21-9b7c7b72b571",
+            "number": 7,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "ee770d9c-dc1a-4893-a169-9cf5dddb6dff",
+            "number": 3,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "4913144c-57e8-43ca-9144-7f33df30e5c9",
+            "number": 9,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "19fa87a8-75c7-473d-9625-c56767262d54",
+            "number": 9,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "2d7c8f95-32a0-47af-b1d0-4fbf3e1627e2",
+            "number": 2,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "2d594c7b-803f-452f-a54c-d078ffe8c21e",
+            "number": 11,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "703f3518-b11a-4044-93f1-c73b45ce434d",
+            "number": 13,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "e0430b2b-7947-4dfc-af83-cc315e0b240f",
+            "number": 10,
+            "deck": "clubs",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "55f30c62-02a5-40bd-87c4-47e087db13a6",
+            "number": 13,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "cf44f106-bec9-4a61-845e-22415f83d81f",
+            "number": 10,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "95d97567-c7cd-4e3e-9ca7-d4774d2c097d",
+            "number": 5,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "3e325480-029a-45a6-9889-daf30f20ecf0",
+            "number": 8,
+            "deck": "hearts",
+            "color": "red",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "0f3150ed-34bd-475d-827d-1e4e7b23ca91",
+            "number": 8,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        },
+        {
+            "id": "064fd4cf-463d-4ef4-b619-a5d8c2212d1c",
+            "number": 4,
+            "deck": "spades",
+            "color": "black",
+            "flipped": false,
+            "zoneId": "cards-stack",
+            "stacked": true,
+            "showed": false,
+            "zone": "stacked"
+        }
+    ],
+    "stacked": {
+        "zone": "stacked",
+        "id": "stacked",
+        "cards": [
+            {
+                "id": "01339eef-1aeb-4e7e-b5e4-a6d9926d0c3e"
+            },
+            {
+                "id": "b7d6b64c-1a89-416e-b2dd-48720e52c92c"
+            },
+            {
+                "id": "3665d90e-c0de-4a9f-bd0f-586f3c11fc74"
+            },
+            {
+                "id": "3d7e3713-3558-4889-aaed-fdb37a0f00cc"
+            },
+            {
+                "id": "40b04805-06a8-4869-87be-a012305b00ed"
+            },
+            {
+                "id": "4cefd3af-99fc-4e98-b051-f5fe3ec4962c"
+            },
+            {
+                "id": "7be61743-95b1-4327-8970-83614c8fe5b3"
+            },
+            {
+                "id": "0274eb70-6de9-4488-8cef-8ffb148b7fc6"
+            },
+            {
+                "id": "db11c43e-2cd1-4800-80c3-39c4c6f0e8cf"
+            },
+            {
+                "id": "103ecab3-405f-4f38-b123-3c618706a252"
+            },
+            {
+                "id": "b19459e5-11d5-44a0-ad21-9b7c7b72b571"
+            },
+            {
+                "id": "ee770d9c-dc1a-4893-a169-9cf5dddb6dff"
+            },
+            {
+                "id": "4913144c-57e8-43ca-9144-7f33df30e5c9"
+            },
+            {
+                "id": "19fa87a8-75c7-473d-9625-c56767262d54"
+            },
+            {
+                "id": "2d7c8f95-32a0-47af-b1d0-4fbf3e1627e2"
+            },
+            {
+                "id": "2d594c7b-803f-452f-a54c-d078ffe8c21e"
+            },
+            {
+                "id": "703f3518-b11a-4044-93f1-c73b45ce434d"
+            },
+            {
+                "id": "e0430b2b-7947-4dfc-af83-cc315e0b240f"
+            },
+            {
+                "id": "55f30c62-02a5-40bd-87c4-47e087db13a6"
+            },
+            {
+                "id": "cf44f106-bec9-4a61-845e-22415f83d81f"
+            },
+            {
+                "id": "95d97567-c7cd-4e3e-9ca7-d4774d2c097d"
+            },
+            {
+                "id": "3e325480-029a-45a6-9889-daf30f20ecf0"
+            },
+            {
+                "id": "0f3150ed-34bd-475d-827d-1e4e7b23ca91"
+            },
+            {
+                "id": "064fd4cf-463d-4ef4-b619-a5d8c2212d1c"
+            }
+        ]
+    },
+    "showed": {
+        "zone": "showed",
+        "id": "showed",
+        "cards": []
+    },
+    "zones": {
+        "8215f24a-e428-408b-a5df-6a28f96ee525": {
+            "zone": "zone",
+            "id": "8215f24a-e428-408b-a5df-6a28f96ee525",
+            "cards": [],
+            "index": 1
+        },
+        "77187646-20f1-427f-9d89-bf74046a1e3f": {
+            "zone": "zone",
+            "id": "77187646-20f1-427f-9d89-bf74046a1e3f",
+            "cards": [
+                {
+                    "id": "f60007d5-93c2-49a0-88e0-9faa4ee5d653"
+                },
+                {
+                    "id": "63b80069-c771-4bc4-be28-82a4efbe306d"
+                }
+            ],
+            "index": 2
+        },
+        "414c671e-ee1d-4501-8486-ba52634f5714": {
+            "zone": "zone",
+            "id": "414c671e-ee1d-4501-8486-ba52634f5714",
+            "cards": [
+                {
+                    "id": "92ee87da-5189-42e2-b6ab-10d950f343af"
+                },
+                {
+                    "id": "ffb2e246-7e8a-48b3-9697-1bb6aaca3648"
+                },
+                {
+                    "id": "043ee4e0-0444-43aa-b47b-327a781835f3"
+                }
+            ],
+            "index": 3
+        },
+        "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6": {
+            "zone": "zone",
+            "id": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+            "cards": [
+                {
+                    "id": "fc352345-464c-469f-9723-5092f06da7c2"
+                },
+                {
+                    "id": "bb9853d7-3e03-4e7a-a660-825a85eefeef"
+                },
+                {
+                    "id": "313c248d-d04e-4d37-ab4f-8e98bb612852"
+                },
+                {
+                    "id": "6a45347c-0fac-4ab2-b5ea-ca47094458d3"
+                }
+            ],
+            "index": 4
+        },
+        "ac9d4695-b64c-460d-886c-c97ceb122838": {
+            "zone": "zone",
+            "id": "ac9d4695-b64c-460d-886c-c97ceb122838",
+            "cards": [
+                {
+                    "id": "c6eb00b0-0052-4ba5-b55e-0394cefee7da"
+                },
+                {
+                    "id": "729ff8b4-0af1-4c9e-92b4-5d37e1537fa6"
+                },
+                {
+                    "id": "1bc70342-0b38-46ff-bf98-020fa7ea4d5b"
+                },
+                {
+                    "id": "a6225324-be20-4e77-a220-890652834ab1"
+                },
+                {
+                    "id": "43dc8ef7-5df2-4b4a-ae13-21b2dd592fdd"
+                },
+                {
+                    "id": "2eb76989-fd2f-4843-8110-e15c32910626"
+                },
+                {
+                    "id": "bd2f0372-dee5-4d42-b2af-09e4afecbaac"
+                }
+            ],
+            "index": 5
+        },
+        "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a": {
+            "zone": "zone",
+            "id": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+            "cards": [
+                {
+                    "id": "c3535460-b9df-4438-ad34-8aae1355a735"
+                },
+                {
+                    "id": "313ab914-5894-410b-91a8-6b43eb9e69de"
+                },
+                {
+                    "id": "b6637ba5-c908-4b8f-89dc-b148bf23895d"
+                }
+            ],
+            "index": 6
+        },
+        "1ae1fa9b-55a2-447a-85f9-c3024b20ee85": {
+            "zone": "zone",
+            "id": "1ae1fa9b-55a2-447a-85f9-c3024b20ee85",
+            "cards": [
+                {
+                    "id": "4c336bbb-fbca-4f88-8ac9-0884dcf35fee"
+                },
+                {
+                    "id": "a87c8167-accd-41b3-ae4a-70b13c19b4a1"
+                },
+                {
+                    "id": "d3c97f31-b1ef-47d5-b0ba-caed34c2ac77"
+                },
+                {
+                    "id": "5da73ad9-9783-4713-a538-08ac72c5889e"
+                },
+                {
+                    "id": "f91402ce-a579-4029-983a-8f25bde264fe"
+                },
+                {
+                    "id": "ca4ffd50-eb73-4916-ac82-6ce899bbd956"
+                },
+                {
+                    "id": "23aa4b33-8d20-4847-9c5a-c1f810fee3dc"
+                }
+            ],
+            "index": 7
+        }
+    },
+    "foundations": {
+        "9105ccd4-dc8e-4daa-bec3-517af617e6e1": {
+            "id": "9105ccd4-dc8e-4daa-bec3-517af617e6e1",
+            "deck": "diamonds",
+            "cards": []
+        },
+        "85de573e-aa68-455b-894c-b385de66693e": {
+            "id": "85de573e-aa68-455b-894c-b385de66693e",
+            "deck": "clubs",
+            "cards": []
+        },
+        "21bc7622-e7b5-4c40-91ce-2d7a1bb277fc": {
+            "id": "21bc7622-e7b5-4c40-91ce-2d7a1bb277fc",
+            "deck": "hearts",
+            "cards": [
+                {
+                    "id": "600db5f0-3632-46e1-befd-8378d0e40466"
+                }
+            ]
+        },
+        "4d8fd0b8-c33a-472a-bfb4-ab80453f4fe0": {
+            "id": "4d8fd0b8-c33a-472a-bfb4-ab80453f4fe0",
+            "deck": "spades",
+            "cards": [
+                {
+                    "id": "10f20807-1c87-4b65-8b90-6568408472f6"
+                }
+            ]
+        }
+    },
+    "movements": [
+        {
+            "id": "5a74c896-a376-40f9-98e5-93c472635a13",
+            "from": {
+                "id": "8215f24a-e428-408b-a5df-6a28f96ee525",
+                "zone": "zone"
+            },
+            "to": {
+                "id": "ac9d4695-b64c-460d-886c-c97ceb122838",
+                "zone": "zone"
+            },
+            "cards": [
+                {
+                    "id": "2eb76989-fd2f-4843-8110-e15c32910626"
+                }
+            ],
+            "flippedLastCard": false
+        },
+        {
+            "id": "361699d3-9942-4f84-8fba-6ad1a5b3821b",
+            "from": {
+                "id": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+                "zone": "zone"
+            },
+            "to": {
+                "id": "ac9d4695-b64c-460d-886c-c97ceb122838",
+                "zone": "zone"
+            },
+            "cards": [
+                {
+                    "id": "bd2f0372-dee5-4d42-b2af-09e4afecbaac"
+                }
+            ],
+            "flippedLastCard": false
+        },
+        {
+            "id": "7e62d027-ab54-4055-9abe-dced4fe62a09",
+            "from": {
+                "id": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+                "zone": "zone"
+            },
+            "to": {
+                "id": "21bc7622-e7b5-4c40-91ce-2d7a1bb277fc",
+                "zone": "foundation"
+            },
+            "cards": [
+                {
+                    "id": "600db5f0-3632-46e1-befd-8378d0e40466"
+                }
+            ],
+            "flippedLastCard": false
+        },
+        {
+            "id": "63632425-ff6c-4f7f-b806-cab419c4c750",
+            "from": {
+                "id": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+                "zone": "zone"
+            },
+            "to": {
+                "id": "4d8fd0b8-c33a-472a-bfb4-ab80453f4fe0",
+                "zone": "foundation"
+            },
+            "cards": [
+                {
+                    "id": "10f20807-1c87-4b65-8b90-6568408472f6"
+                }
+            ],
+            "flippedLastCard": false
+        }
+    ],
+    "redoMovements": [
+        {
+            "id": "2882f687-292a-4a72-a169-682985a2103e",
+            "from": {
+                "id": "7fd1b62f-d7c1-4bf3-bb22-23e3ac9951e6",
+                "zone": "zone"
+            },
+            "to": {
+                "id": "3ed0c7e8-64a4-49ad-a6d3-be42d97e3f1a",
+                "zone": "zone"
+            },
+            "cards": [
+                {
+                    "id": "6a45347c-0fac-4ab2-b5ea-ca47094458d3"
+                }
+            ],
+            "flippedLastCard": false,
+            "lastCardIsFlipped": true
+        }
+    ]
+}
+  </script>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/main.js"></script>
+  <link rel="icon" href="/favicon.svg">
+  <title>Solitario</title>
+</head>
+
+<body class="min-w-screen min-h-[100dvh] bg-slate-800 text-white overflow-x-hidden" style="color-scheme: dark;">
+
+  <main class="size-full md:px-10 md:py-5 p-2">
+    <div class="w-full h-[calc(var(--card-height)_*_1.2)] ">
+      <div class="flex items-center justify-between">
+        <div>
+          <div id="cards-stack" data-zone="stack"></div>
+          <div id="remaining-stack-turns" class="hidden">
+            <svg>
+              <use href="/icons.svg#repeat"></use>
+            </svg>
+            <span id="remaining-stack-turns-text" class="font-sans">00</span>
+          </div>
+          <div id="show-card-from-stack">
+          </div>
+        </div>
+        <div id="cards-foundations" data-zone="foundations"></div>
+      </div>
+    </div>
+
+    <div id="zones" class="zones"></div>
+    <div id="cards-stand-by" class="w-(--card-width) h-(--card-height) absolute bottom-10"></div>
+
+    <div id="cards-container"></div>
+
+
+    <div id="counters-container" class="counters-container hidden">
+      <div id="time-container" class="time-container counter-card hidden">
+        <div class="counter-icon">
+          <svg>
+            <use href="/icons.svg#clock"></use>
+          </svg>
+        </div>
+        <div class="time-card time-card-hours hidden">00</div>
+        <div class="time-colon hidden">:</div>
+        <div class="time-card time-card-minutes hidden">00</div>
+        <div class="time-colon hidden">:</div>
+        <div class="time-card time-card-seconds">00</div>
+      </div>
+
+      <div id="movements-container" class="movements-container counter-card hidden">
+
+        <div class="counter-icon">
+          <svg>
+            <use href="/icons.svg#hand-move"></use>
+          </svg>
+        </div>
+        <div id="movements-count" class="movements-card">00</div>
+      </div>
+    </div>
+
+
+    <div id="actions-container" class="hidden">
+
+      <button type="button" id="new-game-button" class="action-button new-game-button">
+        <svg>
+          <use href="/icons.svg#reload"></use>
+        </svg>
+        <span>Nuevo Juego</span>
+      </button>
+
+      <button type="button" id="undo" class="action-button undo-button" disabled="true">
+        <svg>
+          <use href="/icons.svg#redo-undo"></use>
+        </svg>
+        <span>Deshacer</span>
+      </button>
+
+      <button type="button" id="redo" class="action-button redo-button" disabled="true">
+        <svg>
+          <use href="/icons.svg#redo-undo"></use>
+        </svg>
+        <span>Rehacer</span>
+      </button>
+
+
+      <div id="difficulty-badge-indicator" class="difficulty-badge-indicator" data-difficulty="easy">
+        <div class="difficulty-badge difficulty-easy">
+          <svg>
+            <use href="/icons.svg#crown"></use>
+          </svg>
+          <span>Facíl</span>
+        </div>
+
+        <div class="difficulty-badge difficulty-hard">
+          <svg>
+            <use href="/icons.svg#crown"></use>
+          </svg>
+          <span>Difícil</span>
+        </div>
+      </div>
+
+
+      <button type="button" id="pause-button" class="action-button">
+        <svg>
+          <use href="/icons.svg#player-pause"></use>
+        </svg>
+      </button>
+
+    </div>
+
+
+    <button type="button" id="omit-button" class="hidden">
+      <svg>
+        <use href="/icons.svg#player-skip-forward"></use>
+      </svg>
+      omitir
+    </button>
+
+  </main>
+
+
+  <dialog id="main-options-dialog" data-status="main-menu">
+    <button type="button" class="close-button" data-modal-id="main-options-dialog">
+      <svg>
+        <use href="/icons.svg#x"></use>
+      </svg>
+    </button>
+
+    <header>
+      <svg id="cards-icon">
+        <use href="/icons.svg#cards"></use>
+      </svg>
+      <h1 class="text-4xl font-playing-card">
+        Solitario
+      </h1>
+
+
+    </header>
+    <main>
+
+      <div class="difficulty-options--container">
+        <div id="difficulty-options" class="difficulty">
+          <button id="difficulty-easy" class="difficulty-card difficulty-easy" data-difficulty="easy">
+            <svg>
+              <use href="/icons.svg#crown"></use>
+            </svg>
+            <h3>Facíl</h3>
+          </button>
+          <button id="difficulty-hard" class="difficulty-card difficulty-hard" data-difficulty="hard">
+            <svg>
+              <use href="/icons.svg#crown"></use>
+            </svg>
+            <h3>Difícil</h3>
+          </button>
+        </div>
+
+        <div class="difficulty-descriptions-container" data-difficulty="easy">
+          <div class="difficulty-description difficulty-description--easy difficulty-easy">
+            <div class="difficulty-card single-difficulty-card">
+              <svg>
+                <use href="/icons.svg#crown"></use>
+              </svg>
+              <h3>Facíl</h3>
+            </div>
+            <p>Juega con vueltas de stack ilimitadas, posibilidad de deshacer y rehacer movimientos.</p>
+          </div>
+          <div class="difficulty-description difficulty-description--hard difficulty-hard">
+            <div class="difficulty-card single-difficulty-card">
+              <svg>
+                <use href="/icons.svg#crown"></use>
+              </svg>
+              <h3>Difícil</h3>
+            </div>
+            <p>Juega con vueltas de stack limitadas, sin posibilidad de deshacer y rehacer movimientos.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="toggle-timer--container" class="toggler-container toggle-timer--container" data-active="false">
+        <div class="toggler-content toggle-timer--content">
+          <div class="toggler-icon toggle-timer--icon">
+            <svg>
+              <use href="/icons.svg#clock"></use>
+            </svg>
+          </div>
+          <div class="toggler-text toggle-timer--text">
+            <h4>Activar cronometro</h4>
+            <p class="hidden">El tiempo se está contando</p>
+            <p class="hidden ">Juega sin contar el tiempo</p>
+          </div>
+        </div>
+        <div class="toggler-switch toggle-timer--switch">
+          <label class="inline-flex items-center cursor-pointer my-auto">
+            <input type="checkbox" value="" class="sr-only peer" id="toggle-timer">
+            <div class="switch"></div>
+          </label>
+        </div>
+      </div>
+
+      <div id="toggle-movements-counter--container" class="toggler-container toggle-movements-counter--container"
+        data-active="false">
+        <div class="toggler-content toggle-movements-counter--content">
+          <div class="toggler-icon toggle-movements-counter--icon">
+            <svg>
+              <use href="/icons.svg#hand-move"></use>
+            </svg>
+          </div>
+          <div class="toggler-text toggle-movements-counter--text">
+            <h4>Activar conteo de movimientos</h4>
+            <p class="hidden">Los movimientos se están contando</p>
+            <p class="hidden ">Juega sin contar los movimientos</p>
+          </div>
+        </div>
+        <div class="toggler-switch toggle-movements-counter--switch">
+          <label class="inline-flex items-center cursor-pointer my-auto">
+            <input type="checkbox" value="" class="sr-only peer" id="toggle-movements-counter">
+            <div class="switch"></div>
+          </label>
+        </div>
+      </div>
+
+
+      <div id="game-suggestions" class="game-suggestions">
+        <header>
+          <svg>
+            <use href="/icons.svg#candle"></use>
+          </svg>
+
+          <h2>Consejos</h2>
+        </header>
+        <ul>
+          <li>Descubre cartas boca abajo cuando sea posible</li>
+          <li>Construye las bases por palo de As a Rey</li>
+          <li>Alterna colores en las columnas (rojo sobre negro)</li>
+          <li>Solo los Reyes pueden ir en espacios vacíos</li>
+        </ul>
+      </div>
+
+      <button id="play-button" class="dialog-button">
+        <svg>
+          <use href="/icons.svg#gamepad"></use>
+        </svg>
+        Jugar
+      </button>
+
+
+
+    </main>
+  </dialog>
+
+
+  <dialog id="game-paused-dialog">
+    <button type="button" class="close-button" data-modal-id="game-paused-dialog">
+      <svg>
+        <use href="/icons.svg#x"></use>
+      </svg>
+    </button>
+    <header>
+      <svg>
+        <use href="/icons.svg#player-pause"></use>
+      </svg>
+      <h1>Partida pausada</h1>
+    </header>
+    <main>
+      <div class="flex flex-col gap-2">
+        <div id="game-stats" class="game-section">
+          <header>
+            <svg>
+              <use href="/icons.svg#analytics"></use>
+            </svg>
+            <h4>Estadísticas de la partida</h4>
+          </header>
+          <div class="stats-cards">
+            <div class="stat-card movements-stat">
+              <span id="paused-movements-count">00</span>
+              movimientos
+            </div>
+            <div class="stat-card time-stat">
+              <span id="paused-time-count">00:00:01</span>
+              tiempo
+            </div>
+          </div>
+        </div>
+        <div id="games-settings" class="game-section">
+          <header>
+            <svg>
+              <use href="/icons.svg#settings"></use>
+            </svg>
+            <h4>Configuración actual</h4>
+          </header>
+
+          <ul>
+            <li>
+              Dificultad:
+              <div id="stats-difficulty-badge-indicator"
+                class="difficulty-badge-indicator stats-difficulty-badge-indicator" data-difficulty="easy">
+                <div class="difficulty-badge difficulty-easy">
+                  <svg>
+                    <use href="/icons.svg#crown"></use>
+                  </svg>
+                  <span>Facíl</span>
+                </div>
+
+                <div class="difficulty-badge difficulty-hard">
+                  <svg>
+                    <use href="/icons.svg#crown"></use>
+                  </svg>
+                  <span>Difícil</span>
+                </div>
+              </div>
+
+            </li>
+            <li>
+              Cronometro:
+              <div id="stats-timer-checkbox" class="stat-checkbox" data-active="false">
+                <svg class="check">
+                  <use href="/icons.svg#check"></use>
+                </svg>
+                <svg class="cross">
+                  <use href="/icons.svg#x"></use>
+                </svg>
+              </div>
+            </li>
+            <li>
+              Conteo de movimientos:
+              <div id="stats-movements-checkbox" class="stat-checkbox" data-active="true">
+                <svg class="check">
+                  <use href="/icons.svg#check"></use>
+                </svg>
+                <svg class="cross">
+                  <use href="/icons.svg#x"></use>
+                </svg>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="game-progress" class="game-section">
+          <header>
+            <svg>
+              <use href="/icons.svg#target"></use>
+            </svg>
+            <h4>Progreso del juego</h4>
+          </header>
+
+          <ul>
+            <li>Cartas en fundaciones: <span id="stats-foundations-cards">0/52</span></li>
+            <li>
+              Deshacer / Rehacer:
+              <div id="stats-undo-redo-checkbox" class="stat-checkbox" data-active="true">
+                <svg class="check">
+                  <use href="/icons.svg#check"></use>
+                </svg>
+                <svg class="cross">
+                  <use href="/icons.svg#x"></use>
+                </svg>
+              </div>
+            </li>
+            <li>
+              Cartas en pila:
+              <span id="stats-stack-cards">0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="buttons-container">
+        <button id="continue-playing-button" class="dialog-button dialog-button--continue" type="button"
+          title="Continuar la partida">Continuar</button>
+        <button id="restart-playing-button" class="dialog-button dialog-button--restart" type="button"
+          title="Volver a jugar la partida con la misma disposición inicial de cartas">
+          <svg>
+            <use href="/icons.svg#reload"></use>
+          </svg>
+        </button>
+      </div>
+    </main>
+  </dialog>
+
+  <dialog id="end-game-dialog">
+    <header>
+      <svg>
+        <use href="/icons.svg#trophy"></use>
+      </svg>
+      <h2>¡Felicidades!</h2>
+      <p>¡Has completado el Solitario Klondike con éxito!</p>
+    </header>
+
+    <main>
+      <div class="flex flex-col gap-2">
+        <div class="game-section">
+          <header>
+            <svg>
+              <use href="/icons.svg#analytics"></use>
+            </svg>
+            <h4>Estadísticas de la partida</h4>
+          </header>
+          <div class="stats-cards">
+            <div class="stat-card movements-stat">
+              <span id="win-movements-count">00</span>
+              movimientos
+            </div>
+            <div class="stat-card time-stat">
+              <span id="win-time-count">00:00:01</span>
+              tiempo
+            </div>
+          </div>
+        </div>
+        <div id="games-settings" class="game-section">
+          <header>
+            <svg>
+              <use href="/icons.svg#settings"></use>
+            </svg>
+            <h4>Configuración actual</h4>
+          </header>
+
+          <ul>
+            <li>
+              Dificultad:
+              <div id="win-difficulty-badge-indicator"
+                class="difficulty-badge-indicator stats-difficulty-badge-indicator" data-difficulty="easy">
+                <div class="difficulty-badge difficulty-easy">
+                  <svg>
+                    <use href="/icons.svg#crown"></use>
+                  </svg>
+                  <span>Facíl</span>
+                </div>
+
+                <div class="difficulty-badge difficulty-hard">
+                  <svg>
+                    <use href="/icons.svg#crown"></use>
+                  </svg>
+                  <span>Difícil</span>
+                </div>
+              </div>
+
+            </li>
+            <li>
+              Cronometro:
+              <div id="win-timer-checkbox" class="stat-checkbox" data-active="false">
+                <svg class="check">
+                  <use href="/icons.svg#check"></use>
+                </svg>
+                <svg class="cross">
+                  <use href="/icons.svg#x"></use>
+                </svg>
+              </div>
+            </li>
+            <li>
+              Conteo de movimientos:
+              <div id="win-movements-checkbox" class="stat-checkbox" data-active="true">
+                <svg class="check">
+                  <use href="/icons.svg#check"></use>
+                </svg>
+                <svg class="cross">
+                  <use href="/icons.svg#x"></use>
+                </svg>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+
+    <button type="button" class="dialog-button" id="play-again-button">
+      <svg>
+        <use href="/icons.svg#reload"></use>
+      </svg>
+      Jugar de nuevo
+    </button>
+
+    <footer>
+      <p>"El éxito es la suma de pequeños esfuerzos repetidos día tras día"</p>
+    </footer>
+  </dialog>
+
+  <svg width="0" height="0">
+    <defs>
+      <clipPath id="clip-path" clipPathUnits="objectBoundingBox">
+        <path
+          d="m 0.5625 0.0 l -0.5625 0.0 l 0.0 1.0 l 1.0 0.0 l 0.0 -0.5 a 1 1 0 0 0 -0.0625 -0.05 a 1 1 0 0 0 -0.0625 -0.05 a 1 1 0 0 0 -0.0625 0.0 a 1 1 0 0 0 -0.0625 0.0 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 -0.0625 0.0 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 -0.0625 -0.05 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 -0.0625 0.0 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 0.0 0.0 a 1 1 0 0 0 0.0 -0.05 a 1 1 0 0 0 0.0 -0.05" />
+      </clipPath>
+
+      <clipPath id="part-left" clipPathUnits="objectBoundingBox">
+        <path
+          d="m 0.5625 0.0 l -0.5625 0.0 l 0.0 1.0 l 0.9375 0.0 A 1 1 0 0 0 0.875 0.95 A 1 1 0 0 0 0.875 0.9 A 1 1 0 0 0 0.9375 0.85 A 1 1 0 0 0 0.9375 0.8 A 1 1 0 0 0 0.875 0.8 A 1 1 0 0 0 0.9375 0.75 A 1 1 0 0 0 0.9375 0.7 A 1 1 0 0 0 0.9375 0.65 A 1 1 0 0 0 0.875 0.65 A 1 1 0 0 0 0.8125 0.6 A 1 1 0 0 0 0.875 0.55 A 1 1 0 0 0 0.9375 0.5 A 1 1 0 0 0 0.875 0.45 A 1 1 0 0 0 0.875 0.4 A 1 1 0 0 0 0.8125 0.35 A 1 1 0 0 0 0.875 0.3 A 1 1 0 0 0 0.9375 0.25 A 1 1 0 0 0 0.9375 0.2 A 1 1 0 0 0 0.875 0.2 A 1 1 0 0 0 0.8125 0.15 A 1 1 0 0 0 0.875 0.1 A 1 1 0 0 0 0.9375 0.05 A 1 1 0 0 0 0.9375 0.0 L 0.5625 0.0">
+        </path>
+      </clipPath>
+      <clipPath id="part-right" clipPathUnits="objectBoundingBox">
+        <path
+          d="M 0.0 0.0 L 0.9375 0.0 L 0.9375 1.0 L 0.0625 1.0 A 1 1 0 0 0 0.0 0.95 A 1 1 0 0 0 0.0 0.9 A 1 1 0 0 0 0.0625 0.85 A 1 1 0 0 0 0.0625 0.8 A 1 1 0 0 0 0.0 0.8 A 1 1 0 0 0 0.0625 0.75 A 1 1 0 0 0 0.0625 0.7 A 1 1 0 0 0 0.0625 0.65 A 1 1 0 0 0 0.0 0.65 A 1 1 0 0 0 -0.0625 0.6 A 1 1 0 0 0 0.0 0.55 A 1 1 0 0 0 0.0625 0.5 A 1 1 0 0 0 0.0 0.45 A 1 1 0 0 0 -0.0625 0.4 A 1 1 0 0 0 -0.125 0.35 A 1 1 0 0 0 -0.0625 0.3 A 1 1 0 0 0 0.0 0.25 A 1 1 0 0 0 0.0 0.2 A 1 1 0 0 0 -0.0625 0.2 A 1 1 0 0 0 -0.125 0.15 A 1 1 0 0 0 -0.0625 0.1 A 1 1 0 0 0 0.0 0.05 A 1 1 0 0 0 0.0 0.0">
+        </path>
+      </clipPath>
+
+      <clipPath id="part-top-right" clipPathUnits="objectBoundingBox">
+        <path
+          d="M 0.9375 0.3 A 1 1 0 0 0 0.875 0.25 A 1 1 0 0 0 0.9375 0.2 A 1 1 0 0 0 0.875 0.2 A 1 1 0 0 0 0.875 0.15 A 1 1 0 0 0 0.875 0.1 A 1 1 0 0 0 0.8125 0.05 A 1 1 0 0 0 0.75 0.05 A 1 1 0 0 0 0.75 0.0 A 1 1 0 0 0 0.6875 0.0 L 0.0 0.0 L 0.9375 0.3 L 0.9375 1.0 L 0.0625 1.0 A 1 1 0 0 0 0.0 0.95 A 1 1 0 0 0 0.0 0.9 A 1 1 0 0 0 0.0625 0.85 A 1 1 0 0 0 0.0625 0.8 A 1 1 0 0 0 0.0 0.8 A 1 1 0 0 0 0.0625 0.75 A 1 1 0 0 0 0.0625 0.7 A 1 1 0 0 0 0.0625 0.65 A 1 1 0 0 0 0.0 0.65 A 1 1 0 0 0 -0.0625 0.6 A 1 1 0 0 0 0.0 0.55 A 1 1 0 0 0 0.0625 0.5 A 1 1 0 0 0 0.0 0.45 A 1 1 0 0 0 -0.0625 0.4 A 1 1 0 0 0 -0.125 0.35 A 1 1 0 0 0 -0.0625 0.3 A 1 1 0 0 0 0.0 0.25 A 1 1 0 0 0 0.0 0.2 A 1 1 0 0 0 -0.0625 0.2 A 1 1 0 0 0 -0.125 0.15 A 1 1 0 0 0 -0.0625 0.1 A 1 1 0 0 0 0.0 0.05 A 1 1 0 0 0 0.0 0.0">
+        </path>
+      </clipPath>
+    </defs>
+
+
+
+
+    <symbol id='hearts' viewBox='0 0 272 254' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <path
+        d='M136.188 252.542C412.564 53.8595 188.035 -76.9759 136.188 53.2022C84.3405 -76.9759 -140.188 53.8595 136.188 252.542Z'
+        fill='currentColor' />
+      <path
+        d='M136 252.677C413.001 53.6777 187.501 -77.3229 136 53.6771M136.376 252.677C-140.626 53.6777 84.8744 -77.3229 136.376 53.6771'
+        stroke='currentColor' />
+    </symbol>
+  </svg>
+
+</body>
+
+</html>
