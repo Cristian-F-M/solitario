@@ -1632,7 +1632,7 @@ function playSound({
 	if (reset) sound.currentTime = 0
 	sound.volume = vol
 	sound.loop = loop
-	// sound.play()
+	sound.play()
 }
 
 function stopSound({ id, reset = false }: { id: SoundId; reset?: boolean }) {
